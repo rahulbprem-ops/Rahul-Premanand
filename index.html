@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rahul Premanand</title>
+<meta name="description" content="Rahul Premanand: Computer Engineering at Virginia Tech. ML and environmental-sensing researcher, structural analyst on Team ASTRA's NASA Micro-g NExT proposal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a professional engineering portfolio. One typeface family, neutral ink, hairline rules, navy accent reserved for links and the active state. Mono only for equations. */
+:root{
+  --paper:#fafaf9;
+  --sheet:#ffffff;
+  --ink:#16191f;
+  --ink-2:#5b616b;
+  --rule:#e3e4e6;
+  --grid:rgba(22,25,31,.04);
+  --accent:#1f3b63;
+  --accent-soft:#e9f0f7;
+  --accent-ink:#ffffff;
+  --ok:#1f7a4d;
+  --warn:#b7791f;
+  --display:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --body:"IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#111317; --sheet:#171a1f; --ink:#e8e9eb; --ink-2:#9a9fa8; --rule:#2a2e35;
+    --grid:rgba(255,255,255,.03); --accent:#8db4dc; --accent-soft:#1a2633; --accent-ink:#0d1520; --ok:#4cc38a; --warn:#e0a84a;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#111317; --sheet:#171a1f; --ink:#e8e9eb; --ink-2:#9a9fa8; --rule:#2a2e35;
+  --grid:rgba(255,255,255,.03); --accent:#8db4dc; --accent-soft:#1a2633; --accent-ink:#0d1520; --ok:#4cc38a; --warn:#e0a84a;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;
+  font-variation-settings:"wdth" 100;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.mono{font-family:var(--mono);font-size:.74rem;letter-spacing:.02em}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1.05}
+h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:700;font-variation-settings:"wdth" 100;letter-spacing:-.015em}
+h3{font-size:1.25rem;font-weight:750;font-variation-settings:"wdth" 108}
+p{margin:0}
+.num{font-variant-numeric:tabular-nums}
+
+/* nav */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+header.top .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.mark{font-family:var(--display);font-weight:700;font-size:1rem;text-decoration:none;letter-spacing:.01em}
+.mark span{color:var(--accent)}
+nav.links{display:flex;gap:22px;margin-left:auto}
+nav.links a{text-decoration:none;font-family:var(--mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-2)}
+nav.links a:hover{color:var(--ink)}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;padding:6px 10px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet);white-space:nowrap}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 25%,transparent)}
+@media (max-width:820px){nav.links{display:none}.status{margin-left:auto}}
+
+/* hero */
+.hero{padding:clamp(48px,8vw,96px) 0 40px}
+.hero-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(28px,5vw,64px);align-items:end}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.eyebrow{color:var(--ink-2);margin-bottom:22px;display:flex;flex-wrap:wrap;gap:6px 14px}
+.eyebrow b{color:var(--ink);font-weight:600}
+.hero h1{font-size:clamp(2.8rem,6.5vw,4.8rem);font-weight:750;font-variation-settings:"wdth" 100;letter-spacing:-.03em;line-height:1}
+.hero h1 .last{display:inline}
+.thesis{font-size:clamp(1.2rem,2.1vw,1.55rem);line-height:1.35;margin-top:28px;max-width:30ch;font-weight:500;font-variation-settings:"wdth" 96}
+.thesis em{font-style:normal;font-weight:600}
+.intro{margin-top:18px;max-width:58ch;color:var(--ink-2)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border:1px solid var(--rule);border-radius:6px;text-decoration:none;font-family:var(--body);font-size:.92rem;font-weight:600;background:var(--sheet);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn:hover{border-color:var(--ink)}
+.btn{transition:border-color .15s}
+
+/* title block card */
+.tblock{border-radius:8px;overflow:hidden;background:var(--sheet);border:1px solid var(--rule);font-family:var(--mono);font-size:.8rem}
+.tblock .row{display:grid;grid-template-columns:120px 1fr;border-bottom:1px solid var(--rule)}
+.tblock .row:last-child{border-bottom:0}
+.tblock .k{padding:10px 12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.05em;font-size:.68rem;border-right:1px solid var(--rule)}
+.tblock .v{padding:10px 12px;line-height:1.45}
+.tblock .head{background:var(--paper);color:var(--ink-2);border-bottom:1px solid var(--rule);padding:8px 12px;display:flex;justify-content:space-between;text-transform:uppercase;letter-spacing:.08em;font-size:.68rem}
+
+/* stats */
+.stats{border-radius:8px;overflow:hidden;display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--rule);background:var(--sheet);margin-top:clamp(40px,6vw,64px)}
+.stat{padding:18px 18px 16px;border-right:1px solid var(--rule)}
+.stat:last-child{border-right:0}
+.stat .n{font-family:var(--display);font-weight:700;font-size:clamp(1.9rem,3.4vw,2.6rem);line-height:1;font-variant-numeric:tabular-nums}
+.stat .n sup{font-size:.45em;color:var(--ink-2);vertical-align:top;margin-left:2px}
+.stat .l{font-size:.82rem;color:var(--ink-2);margin-top:8px;line-height:1.35}
+@media (max-width:900px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid var(--rule)}.stat:nth-child(2n){border-right:0}.stat:last-child{grid-column:1/-1}}
+
+/* sections */
+section.block{padding:clamp(64px,9vw,110px) 0 0}
+.sec-head{display:grid;grid-template-columns:1fr;gap:10px 22px;align-items:end;margin-bottom:36px;border-bottom:1px solid var(--rule);padding-bottom:16px}
+.sec-head .ref{color:var(--ink-2);grid-row:1/3;align-self:start;padding-top:6px}
+.sec-head p{color:var(--ink-2);max-width:62ch}
+@media (max-width:640px){.sec-head{grid-template-columns:1fr}.sec-head .ref{grid-row:auto}}
+
+/* work grid */
+.work{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.card{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:12px;position:relative}
+.card:hover{border-color:color-mix(in srgb,var(--ink) 35%,var(--rule))}
+.card .tag{color:var(--ink-2)}
+.card .tag b{color:var(--accent);font-weight:600}
+.card p{color:var(--ink-2);font-size:.95rem}
+.card ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:.93rem}
+.card ul li{margin:3px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.chip{font-family:var(--mono);font-size:.68rem;letter-spacing:.03em;padding:3px 8px;border:1px solid var(--rule);border-radius:2px;color:var(--ink-2);background:var(--paper)}
+.metric{font-family:var(--display);font-weight:700;font-size:2rem;line-height:1;color:var(--ink)}
+.metric small{display:block;font-family:var(--mono);font-size:.66rem;font-weight:400;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);margin-top:6px}
+.c-feature{grid-column:span 6;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;padding:0;border:1px solid var(--rule)}
+.c-feature .txt{padding:28px;display:flex;flex-direction:column;gap:14px}
+.c-feature .pic img{width:100%;height:auto}
+.c-feature{overflow:hidden}
+.c-feature .pic{background:#fff;border-left:1px solid var(--rule);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:14px;gap:6px}
+.c-feature h3{font-size:clamp(1.4rem,2.6vw,1.9rem);font-weight:700}
+.c-3{grid-column:span 3}.c-2{grid-column:span 2}
+@media (max-width:900px){.c-feature{grid-template-columns:1fr}.c-feature .pic{border-left:0;border-top:1px solid var(--rule)}.c-3,.c-2{grid-column:span 6}}
+.flag{position:absolute;top:-1px;right:-1px;background:var(--accent);color:var(--accent-ink);padding:5px 10px}
+
+/* astra deep dive */
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media (max-width:900px){.dd{grid-template-columns:1fr}}
+.panel{border-radius:8px;overflow:hidden;background:var(--sheet);border:1px solid var(--rule)}
+.panel .ph{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule);color:var(--ink-2)}
+.role{display:grid;gap:0}
+.role li{list-style:none;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 16px;border-bottom:1px solid var(--rule)}
+.role li:last-child{border-bottom:0}
+.role .ix{font-family:var(--mono);color:var(--accent);font-size:.8rem;padding-top:3px}
+.role strong{display:block;font-family:var(--display);font-variation-settings:"wdth" 108;font-size:1.05rem;margin-bottom:2px}
+.role span{color:var(--ink-2);font-size:.94rem}
+ul.role{margin:0;padding:0}
+
+/* mast widget */
+.mast-wrap{display:grid;grid-template-columns:200px 1fr;gap:0}
+.mast-svg{border-right:1px solid var(--rule);padding:14px 8px;display:flex;justify-content:center;background:var(--paper)}
+.mast-svg svg{width:100%;max-width:180px;height:auto}
+.mast-ctl{padding:18px;display:flex;flex-direction:column;gap:14px}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.readout > div{border:1px solid var(--rule);padding:10px 12px;background:var(--paper)}
+.readout .v{font-family:var(--display);font-weight:700;font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}
+.readout .k{font-family:var(--mono);font-size:.64rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2);margin-top:6px}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.mast-ctl label{font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-2)}
+.mast-ctl p{font-size:.9rem;color:var(--ink-2)}
+@media (max-width:520px){.mast-wrap{grid-template-columns:1fr}.mast-svg{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* load cases */
+.tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.tabs button{flex:1 1 25%;min-width:120px;background:transparent;border:0;border-right:1px solid var(--rule);padding:12px 10px;text-align:left;cursor:pointer;color:var(--ink-2);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
+.tabs button:last-child{border-right:0}
+.tabs button b{display:block;font-family:var(--display);font-size:1.35rem;color:var(--ink);letter-spacing:0;font-weight:700;text-transform:none;margin-top:4px;font-variant-numeric:tabular-nums}
+.tabs button[aria-selected="true"]{background:var(--paper);color:var(--ink);box-shadow:inset 0 -2px 0 var(--accent)}
+.tabs button[aria-selected="true"] b{color:var(--ink)}
+.lc{padding:18px;display:grid;gap:14px}
+.fos-bar{position:relative;height:14px;border-radius:7px;overflow:visible;background:var(--paper);border:1px solid var(--rule)}
+.fos-bar .fill{position:absolute;inset:0 auto 0 0;background:var(--accent);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+.fos-bar .min{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2px dashed var(--ink)}
+.fos-scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.64rem;color:var(--ink-2)}
+.steps{font-family:var(--mono);font-size:.8rem;line-height:1.8;background:var(--paper);border:1px solid var(--rule);padding:12px 14px;overflow-x:auto;white-space:nowrap}
+.steps .r{color:var(--ink);font-weight:700}
+.lc .note{font-size:.92rem;color:var(--ink-2)}
+.lc .crit{display:flex;flex-wrap:wrap;gap:8px 18px;font-family:var(--mono);font-size:.74rem;color:var(--ink-2)}
+.lc .crit b{color:var(--ink);font-weight:600}
+
+.renders{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
+.renders figure{margin:0;border-radius:8px;overflow:hidden;background:#fff;border:1px solid var(--rule);display:flex;flex-direction:column}
+.renders figure img{margin:auto;padding:12px;max-height:280px;object-fit:contain}
+.renders figcaption{border-top:1px solid #c9d1db;padding:8px 12px;font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:#4a5568;background:#f8f9fb}
+@media (max-width:760px){.renders{grid-template-columns:1fr}}
+.callout{margin-top:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.callout > div{border-left:2px solid var(--rule);padding:4px 0 4px 16px}
+.callout h3{font-size:1.05rem;margin-bottom:6px}
+.callout p{color:var(--ink-2);font-size:.94rem}
+@media (max-width:860px){.callout{grid-template-columns:1fr}}
+
+/* research list */
+.pubs{display:grid;gap:0;border-top:1px solid var(--rule)}
+.pub{display:grid;grid-template-columns:140px 1fr auto;gap:22px;padding:22px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.pub .yr{color:var(--ink-2)}
+.pub h3{font-size:1.2rem;margin-bottom:6px}
+.pub p{color:var(--ink-2);font-size:.95rem;max-width:68ch}
+.pub .kind{padding:4px 8px;border:1px solid var(--rule);border-radius:4px;white-space:nowrap;color:var(--ink-2)}
+.pub .kind.first{border-color:var(--accent);color:var(--accent)}
+@media (max-width:720px){.pub{grid-template-columns:1fr;gap:8px}}
+
+/* skills */
+.skills{border-radius:8px;overflow:hidden;display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--rule);background:var(--sheet)}
+.skill{padding:22px;border-right:1px solid var(--rule)}
+.skill:last-child{border-right:0}
+.skill h3{font-size:1rem;margin-bottom:14px;font-variation-settings:"wdth" 112}
+.skill ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.skill li{font-size:.93rem;display:flex;justify-content:space-between;gap:10px;border-bottom:1px dotted var(--rule);padding-bottom:6px}
+.skill li span{font-family:var(--mono);font-size:.66rem;color:var(--ink-2);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+@media (max-width:900px){.skills{grid-template-columns:1fr 1fr}.skill:nth-child(2){border-right:0}.skill:nth-child(-n+2){border-bottom:1px solid var(--rule)}}
+@media (max-width:520px){.skills{grid-template-columns:1fr}.skill{border-right:0;border-bottom:1px solid var(--rule)}}
+
+/* timeline + honors */
+.two{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(28px,5vw,56px)}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.tl{list-style:none;margin:0;padding:0;border-left:1px solid var(--rule)}
+.tl li{position:relative;padding:0 0 26px 24px}
+.tl li::before{content:"";position:absolute;left:-5px;top:8px;width:9px;height:9px;border-radius:50%;background:var(--paper);border:2px solid var(--ink-2)}
+.tl li.now::before{background:var(--ink);border-color:var(--ink)}
+.tl .when{color:var(--ink-2);display:block;margin-bottom:2px}
+.tl strong{font-family:var(--display);font-variation-settings:"wdth" 108;font-size:1.08rem}
+.tl p{color:var(--ink-2);font-size:.94rem}
+.honors{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.honors li{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px 0;border-bottom:1px solid var(--rule);font-size:.97rem}
+.honors li span{color:var(--ink-2);font-family:var(--mono);font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;text-align:right}
+.lead{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media (max-width:860px){.lead{grid-template-columns:1fr}}
+
+/* contact */
+.contact{margin-top:clamp(64px,9vw,110px);border-top:1px solid var(--rule);background:var(--sheet);color:var(--ink);padding:clamp(36px,6vw,64px) 0}
+.contact h2{font-size:clamp(1.8rem,4vw,2.8rem)}
+.contact h2 span{color:var(--ink)}
+.contact p{color:var(--ink-2);max-width:56ch;margin-top:16px}
+
+.contact .addr{font-family:var(--mono);font-size:.9rem;margin-top:14px}
+.tb-foot{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid color-mix(in srgb,var(--paper) 30%,transparent);margin-top:44px;font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.05em}
+.tb-foot div{padding:10px 12px;border-right:1px solid color-mix(in srgb,var(--paper) 30%,transparent)}
+.tb-foot div:last-child{border-right:0}
+.tb-foot div b{display:block;color:var(--paper);font-weight:600;margin-top:4px}
+.tb-foot div{color:color-mix(in srgb,var(--paper) 60%,var(--ink))}
+@media (max-width:760px){.tb-foot{grid-template-columns:1fr 1fr}.tb-foot div{border-bottom:1px solid color-mix(in srgb,var(--paper) 30%,transparent)}}
+
+/* emphasis */
+.hl{font-weight:600;color:var(--ink);background:linear-gradient(transparent 62%,color-mix(in srgb,var(--accent) 22%,transparent) 62%);padding:0 1px}
+.sec-head h2{position:relative;padding-left:16px}
+.sec-head h2::before{content:"";position:absolute;left:0;top:.18em;bottom:.18em;width:4px;border-radius:2px;background:var(--accent)}
+.stat{border-top:3px solid transparent}
+.stat .n{color:var(--accent)}
+.metric{color:var(--accent)!important}
+.c-feature{border:1.5px solid var(--accent)!important;box-shadow:0 1px 0 var(--rule),0 12px 32px -18px color-mix(in srgb,var(--accent) 45%,transparent)}
+.c-feature .txt{background:linear-gradient(180deg,var(--accent-soft),var(--sheet) 45%)}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--accent-ink);font-family:var(--mono);font-size:.7rem;font-weight:600;padding:4px 9px;border-radius:999px;letter-spacing:.02em}
+.c-feature .tag{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.callout > div{border-left:3px solid var(--accent)!important;background:var(--sheet);border-radius:0 8px 8px 0;padding:14px 16px 14px 18px!important}
+.callout > div.key{background:var(--accent-soft)}
+.callout .kicker{display:block;font-family:var(--mono);font-size:.68rem;color:var(--accent);font-weight:600;margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+.pub .kind.first{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)!important;font-weight:600}
+.pub.top{background:var(--accent-soft);border-radius:8px;padding-left:16px;padding-right:16px;border-bottom-color:transparent}
+.role li.top{background:var(--accent-soft)}
+.role li.top strong{color:var(--accent)}
+.tblock .row.top .v{font-weight:600}
+.tblock .row.top .k{color:var(--accent);font-weight:600}
+.card .tag b{font-weight:700}
+.status{border-color:color-mix(in srgb,var(--ok) 45%,var(--rule))}
+
+/* professional pass */
+body{font-size:16.5px;font-variation-settings:normal}
+h1,h2,h3{font-variation-settings:normal!important;letter-spacing:-.01em}
+.mono{font-family:var(--body);font-size:.75rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.chip{font-family:var(--body);font-size:.74rem;border-radius:4px;letter-spacing:0}
+.hl{background:none;padding:0;font-weight:600}
+.sec-head h2{padding-left:0}
+.sec-head h2::before{display:none}
+.sec-head{border-bottom:1px solid var(--rule);margin-bottom:32px}
+.stat .n,.metric{color:var(--ink)!important;font-weight:600!important}
+.stat .n{font-size:clamp(1.6rem,2.6vw,2.2rem)!important;white-space:nowrap}
+.stat .n sup{display:none}
+.c-feature{border:1px solid var(--rule)!important;box-shadow:none}
+.c-feature .txt{background:var(--sheet)}
+.badge{background:transparent;color:var(--accent);padding:0;font-family:var(--body);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;border-radius:0}
+.callout > div{border-left:2px solid var(--ink)!important;background:transparent;border-radius:0}
+.callout > div.key{background:transparent}
+.callout .kicker{color:var(--ink-2);font-family:var(--body);font-weight:600}
+.role li.top{background:transparent}
+.role li.top strong{color:var(--ink)}
+.role .ix{color:var(--ink-2)}
+.tblock .row.top .k{color:var(--ink-2);font-weight:500}
+.tblock .row.top .v{font-weight:500}
+.tblock{font-family:var(--body);font-size:.88rem}
+.tblock .k{font-size:.7rem}
+.pub.top{background:transparent;padding-left:0;padding-right:0;border-bottom-color:var(--rule)}
+.pub .kind{font-family:var(--body);font-size:.72rem}
+.pub .kind.first{background:var(--ink);border-color:var(--ink);color:var(--paper)!important}
+.card .tag b{color:var(--ink)}
+.status{font-family:var(--body);font-size:.75rem;letter-spacing:.02em;text-transform:none;font-weight:500}
+nav.links a{font-family:var(--body);font-size:.85rem;letter-spacing:0;text-transform:none}
+.tabs button{font-family:var(--body);font-size:.72rem;letter-spacing:.06em}
+.tabs button b{font-weight:600}
+.readout .v{font-weight:600}
+.fos-bar .fill{background:var(--ink)}
+.mast-ctl label{font-family:var(--body)}
+.readout .k,.metric small,.tl .when,.honors li span,.skill li span{font-family:var(--body)}
+/* seeking section */
+.seek{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:900px){.seek{grid-template-columns:1fr}}
+.roles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media (max-width:520px){.roles{grid-template-columns:1fr}}
+.roles div{border:1px solid var(--rule);border-radius:8px;background:var(--sheet);padding:16px}
+.roles h3{font-size:1rem;margin-bottom:6px}
+.roles p{font-size:.9rem;color:var(--ink-2)}
+.fit{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.fit li{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:.93rem}
+.fit li b{font-weight:600}
+.fit li span{color:var(--ink-2)}
+@media (max-width:520px){.fit li{grid-template-columns:1fr;gap:2px}}
+
+/* boxed emphasis */
+.hl{font-weight:600;color:var(--ink);background:var(--accent-soft);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:4px;padding:1px 6px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.callout > div.key{border:1px solid color-mix(in srgb,var(--accent) 35%,var(--rule))!important;border-left:3px solid var(--accent)!important;background:var(--accent-soft);border-radius:8px}
+.callout > div.key .kicker{color:var(--accent)}
+.pub.top{border:1px solid color-mix(in srgb,var(--accent) 35%,var(--rule));background:var(--accent-soft);border-radius:8px;padding:20px 18px;margin:8px 0}
+.role li.top{background:var(--accent-soft)}
+.role li.top{box-shadow:inset 3px 0 0 var(--accent)}
+.c-feature .metric{border:1px solid color-mix(in srgb,var(--accent) 30%,var(--rule));background:var(--accent-soft);border-radius:8px;padding:12px 14px}
+.tblock .row.top{background:var(--accent-soft)}
+
+/* revert inline/table boxes; keep block-level boxes */
+.hl{background:none!important;border:0!important;padding:0!important;font-weight:600;color:var(--ink)}
+.tblock .row.top{background:transparent}
+.tblock .row.top .v{font-weight:500}
+.role li.top{background:transparent;box-shadow:none}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#top">Rahul Premanand</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#seeking">Interests</a>
+      <a href="#work">Work</a>
+      <a href="#astra">ASTRA</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#about">Leadership</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="status"><i aria-hidden="true"></i>Seeking Summer 2027 internships</span>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow mono"><b>Computer Engineering</b><span>Virginia Tech · Honors College</span><span>Blacksburg, VA</span></div>
+          <h1>Rahul <span class="last">Premanand</span></h1>
+          <p class="thesis">Computer engineer working across embedded sensing, machine learning, and structural analysis.</p>
+          <p class="intro">I'm a first-year Computer Engineering student. Over two summers of research at George Mason University, I built air-quality sensor hardware from scratch, modeled ozone with machine learning, and <span class="hl">presented my own research at the AGU Fall Meeting</span> in December 2025. At Virginia Tech I <span class="hl">wrote the full stress analysis for my team's NASA Micro-g NExT proposal</span>.</p>
+          <div class="cta">
+            <a class="btn primary" href="#work">See the work →</a>
+            <a class="btn" href="#seeking">Internship interests</a>
+            <a class="btn" href="#contact">Contact</a>
+          </div>
+        </div>
+        <aside class="tblock" aria-label="Summary">
+          <div class="head"><span>At a glance</span><span>Nov 2026</span></div>
+          <div class="row"><div class="k">Degree</div><div class="v">B.S. Computer Engineering, Virginia Tech Honors College (2026 – present)</div></div>
+          <div class="row"><div class="k">Research</div><div class="v">ASSIP intern, George Mason University CSISS (summers 2024 &amp; 2025)</div></div>
+          <div class="row top"><div class="k">Presented</div><div class="v">First-author Abstract &amp; Poster, AGU Fall Meeting (Dec 2025)</div></div>
+          <div class="row top"><div class="k">Design team</div><div class="v">Team ASTRA · Archimedes · NASA Micro-g NExT</div></div>
+          <div class="row"><div class="k">Status</div><div class="v">U.S. citizen · Seeking Summer 2027 internships</div></div>
+          <div class="row"><div class="k">Stack</div><div class="v">Python · Java · JavaScript · XGBoost · SHAP · sensors</div></div>
+        </aside>
+      </div>
+
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><div class="n num">2</div><div class="l">summers of ASSIP research at George Mason University</div></div>
+        <div class="stat" role="listitem"><div class="n num">AGU 2025</div><div class="l">first-author Abstract and Poster, Fall Meeting</div></div>
+        <div class="stat" role="listitem"><div class="n num">10,000+</div><div class="l">datapoints from a sensor I designed and built</div></div>
+        <div class="stat" role="listitem"><div class="n num">4</div><div class="l">load cases I hand-calculated for a NASA proposal, all FoS ≥ 2.0</div></div>
+        <div class="stat" role="listitem"><div class="n num">+18%</div><div class="l">accuracy over baseline on a hybrid pneumonia classifier</div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="block" id="seeking">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>What I'm looking for</h2>
+        <p>Summer 2027 engineering internships. I'm also happy to connect for informational conversations.</p>
+      </div>
+      <div class="seek">
+        <div class="roles">
+          <div><h3>Embedded &amp; systems</h3><p>Sensor hardware, data acquisition and the software that runs close to it.</p></div>
+          <div><h3>Software engineering</h3><p>Writing and testing code in Python, Java and JavaScript.</p></div>
+          <div><h3>Machine learning &amp; data</h3><p>Modeling, feature engineering and interpretable ML on real-world data.</p></div>
+          <div><h3>Aerospace &amp; defense systems</h3><p>Hardware design, structural analysis and verification for flight and space systems.</p></div>
+        </div>
+        <ul class="fit">
+          <li><b>Aerospace &amp; defense</b><span>Hand-calculated stress analysis, hazard analysis and verification planning against NASA requirements (Team ASTRA).</span></li>
+          <li><b>NASA &amp; research</b><span>Independent earth-science ML research presented at AGU; NASA Micro-g NExT proposal.</span></li>
+          <li><b>Big tech</b><span>Python and Java, ML pipelines from data collection through model training.</span></li>
+          <li><b>Fintech &amp; data</b><span>Tree-based models (XGBoost, Random Forest) with SHAP explainability on noisy data.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="block" id="work">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Selected work</h2>
+        <p>Hardware, machine learning and structural analysis.</p>
+      </div>
+
+      <div class="work">
+        <article class="card c-feature">
+          <div class="txt">
+            <div class="mono tag"><span class="badge">Featured project</span><span>NASA Micro-g NExT 2027 · Team ASTRA</span></div>
+            <h3>L.O.T.U.S.: a telescoping light mast for the lunar south pole</h3>
+            <p>A proposed dust-tolerant tripod designed to stow into a 1.3 × 1.3 × 2 ft prism and crank a six-section mast up to 110 in, bringing light into shadowed terrain for Artemis crews. <span class="hl">I did the structural analysis and proposed the cascading extension system.</span> The proposal is submitted, and the prototype build comes next.</p>
+            <div style="display:flex;gap:28px;flex-wrap:wrap">
+              <div class="metric num">2.02<small>Lowest calculated FoS (min 2.0)</small></div>
+              <div class="metric num">110 in<small>Design mast height</small></div>
+              <div class="metric num">24.6<small>in·lb calculated crank torque (max 30)</small></div>
+            </div>
+            <div class="chips"><span class="chip">Mechanics of materials</span><span class="chip">von Mises</span><span class="chip">Impact loading</span><span class="chip">Euler buckling</span><span class="chip">Hazard analysis</span></div>
+            <a class="btn" href="#astra" style="align-self:flex-start">Open the analysis ↓</a>
+          </div>
+          <div class="pic">
+            <img src="images/lotus-deployed.jpg" alt="CAD render of L.O.T.U.S. fully extended, with labeled mast, crank stand and legs" loading="lazy">
+            <img src="images/lotus-stowed.jpg" alt="CAD render of L.O.T.U.S. folded into its triangular stowage prism" loading="lazy">
+          </div>
+        </article>
+
+        <article class="card c-3">
+          <div class="mono tag"><b>Research</b> · ASSIP · George Mason University CSISS</div>
+          <h3>What drives surface ozone? Interpretable ML on atmospheric data</h3>
+          <p>Modeled the drivers of ground-level ozone with Random Forest and XGBoost, then used SHAP to explain which variables matter and why. Featured in GMU's <i>Journal of Student-Scientists' Research</i>.</p>
+          <div class="chips"><span class="chip">Python</span><span class="chip">XGBoost</span><span class="chip">Random Forest</span><span class="chip">SHAP</span><span class="chip">Feature engineering</span></div>
+        </article>
+
+        <article class="card c-3">
+          <div class="mono tag"><b>Hardware + ML</b> · ASSIP · George Mason University</div>
+          <h3>Low-cost AI air-quality sensor</h3>
+          <p>Designed and built a sensor system that classifies incense smoke, then ran the whole pipeline myself: collection, preprocessing, feature engineering and model training.</p>
+          <ul>
+            <li>10,000+ datapoints collected from my own hardware</li>
+            <li>High-accuracy smoke classification</li>
+          </ul>
+          <div class="chips"><span class="chip">Sensors</span><span class="chip">Data acquisition</span><span class="chip">Python</span><span class="chip">Classification</span></div>
+        </article>
+
+        <article class="card c-2">
+          <div class="mono tag"><b>Medical ML</b> · Inspirit AI · 2024</div>
+          <h3>Pneumonia detection from chest X-rays</h3>
+          <p>A hybrid neural network + KNN classifier with custom preprocessing and augmentation.</p>
+          <div class="metric num">+18%<small>accuracy over baseline</small></div>
+          <div class="chips"><span class="chip">Neural nets</span><span class="chip">KNN</span><span class="chip">Augmentation</span></div>
+        </article>
+
+        <article class="card c-2">
+          <div class="mono tag"><b>Web</b> · 2023</div>
+          <h3>Climate change web platform</h3>
+          <p>A multi-page educational site with interactive climate visualizations, written in hand-coded HTML, CSS and JavaScript.</p>
+          <div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Data viz</span></div>
+        </article>
+
+        <article class="card c-2">
+          <div class="mono tag"><b>Teaching</b> · 2022 – 2026</div>
+          <h3>Programming tutor, Java and Python</h3>
+          <p>Four years helping peers with programming fundamentals, debugging and project structure.</p>
+          <div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">Debugging</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ASTRA DEEP DIVE -->
+  <section class="block" id="astra">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Case study: making L.O.T.U.S. hold</h2>
+        <p>Team ASTRA is a first-year design team in Virginia Tech's Archimedes society. For NASA's 2027 Micro-g NExT challenge we proposed L.O.T.U.S., the Lunar Optical Telescopic Unit System. We submitted the proposal in October 2026, and NASA's selections are expected in December. The prototype hasn't been built yet, so every number below comes from design calculations.</p>
+      </div>
+
+      <div class="dd">
+        <div class="panel">
+          <div class="ph mono"><span>My role</span><span>Structures · Concept · Test</span></div>
+          <ul class="role">
+            <li class="top"><span class="ix">01</span><div><strong>Wrote the full stress analysis on my own</strong><span>I hand-calculated four load cases with free-body diagrams, tracked assumptions and cited equations. The methods were bending, combined bending and torsion with von Mises, impact loading and Euler buckling, all checked against NASA's 2.0 factor of safety.</span></div></li>
+            <li class="top"><span class="ix">02</span><div><strong>Proposed the cascading extension system</strong><span>Six nested triangular sections with V-groove pulleys and Kevlar line. One crank raises every section together, so no section can drop on its own.</span></div></li>
+            <li><span class="ix">03</span><div><strong>Shaped the design concept</strong><span>I contributed to the design direction of the stowable tripod and mast.</span></div></li>
+            <li><span class="ix">04</span><div><strong>Planned verification with the head of testing</strong><span>We tied the analysis to the proposed test plan: function, cam-lock, dust, stability and user-range tests to run before NASA's Neutral Buoyancy Lab.</span></div></li>
+          </ul>
+        </div>
+
+        <div class="panel" aria-label="Interactive mast extension">
+          <div class="ph mono"><span>Interactive · Cascading mast</span><span>6 sections · 2 in overlap</span></div>
+          <div class="mast-wrap">
+            <div class="mast-svg"><svg id="mastSvg" viewBox="0 0 160 300" role="img" aria-label="Side view of the six-section mast"></svg></div>
+            <div class="mast-ctl">
+              <label for="ext">Crank the mast</label>
+              <input id="ext" type="range" min="0" max="100" value="100">
+              <div class="readout">
+                <div><div class="v num" id="hOut">110.0</div><div class="k">Mast height (in)</div></div>
+                <div><div class="v num" id="sOut">18.0</div><div class="k">Each section travel (in)</div></div>
+              </div>
+              <button class="btn" id="deploy" type="button">▶ Deploy from stowed</button>
+              <p>Each 20 in section rises 18 in out of the one below it. All five moving sections are tied to one spool, so 18 in of string on the crank moves the top 90 in.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:28px" aria-label="Load case analysis">
+        <div class="ph mono"><span>Stress analysis · Factor of safety by load case</span><span>Requirement: FoS ≥ 2.0</span></div>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <div class="lc" id="lc" role="tabpanel"></div>
+      </div>
+
+      <div class="callout">
+        <div class="key"><span class="kicker">Key result</span><h3>The analysis changed the design</h3><p>A PETG spool axle came out at <span class="hl">FoS 1.90, below NASA's limit</span>. I moved it to 304 steel, which took it to <span class="hl">25.6</span>.</p></div>
+        <div><span class="kicker">Judgment</span><h3>I flagged the risk past the requirement</h3><p>A 4 ft drop in Earth gravity gives FoS ≈ 1.08 on mast section 1. NASA didn't require this check, but it went into the hazard analysis and the handling rules.</p></div>
+        <div><span class="kicker">Verification</span><h3>Actuation stays inside NASA's limits</h3><p>By my calculations, raising the stand takes ≤ 6.56 lb against a 20 lb limit, and turning the crank takes 24.6 in·lb against a 30 in·lb limit. Both figures double the friction allowance to stay conservative.</p></div>
+      </div>
+
+      <div class="renders">
+        <figure><img src="images/lotus-deployed.jpg" alt="L.O.T.U.S. fully extended" loading="lazy"><figcaption>CAD · deployed, 110 in mast</figcaption></figure>
+        <figure><img src="images/lotus-mast-top.jpg" alt="Top of the nested mast showing V-groove pulleys between sections" loading="lazy"><figcaption>CAD · nested sections, V-groove pulleys</figcaption></figure>
+        <figure><img src="images/lotus-stowed.jpg" alt="L.O.T.U.S. folded into its stowage prism" loading="lazy"><figcaption>CAD · stowed, 1.33 ft triangular prism</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Research &amp; publications</h2>
+        <p>Work from two summers in George Mason University's Aspiring Scientists Summer Internship Program (ASSIP) at the Center for Spatial Information Science and Systems.</p>
+      </div>
+      <div class="pubs">
+        <div class="pub top">
+          <span class="mono yr">Dec 2025</span>
+          <div><h3>AGU Fall Meeting: Abstract &amp; Poster</h3><p>My own independent research project. I ran it from data collection through ML modeling, then presented the poster at the American Geophysical Union's annual meeting, one of the largest earth and space science conferences in the world.</p></div>
+          <span class="mono kind first">First author</span>
+        </div>
+                <div class="pub">
+          <span class="mono yr">ASSIP</span>
+          <div><h3>Ozone-driver modeling with Random Forest, XGBoost and SHAP</h3><p>Featured in George Mason University's <i>Journal of Student-Scientists' Research</i>.</p></div>
+          <span class="mono kind">Abstract</span>
+        </div>
+        <div class="pub">
+          <span class="mono yr">2024</span>
+          <div><h3>Inspirit AI Scholars: machine learning researcher</h3><p>Built a hybrid NN + KNN pneumonia classifier that beat the baseline accuracy by 18%. Earned the Inspirit AI Scholar certification.</p></div>
+          <span class="mono kind">Program</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Toolkit</h2>
+        <p>Grouped by area, each tagged with where I used it.</p>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>Languages</h3><ul>
+          <li>Python <span>ML · research</span></li>
+          <li>Java <span>tutored 4 yrs</span></li>
+          <li>JavaScript <span>web platform</span></li>
+          <li>HTML / CSS <span>web platform</span></li>
+        </ul></div>
+        <div class="skill"><h3>Machine learning</h3><ul>
+          <li>XGBoost <span>ozone</span></li>
+          <li>Random Forest <span>ozone</span></li>
+          <li>SHAP explainability <span>ozone</span></li>
+          <li>Neural networks + KNN <span>X-ray</span></li>
+          <li>Feature engineering <span>sensor</span></li>
+        </ul></div>
+        <div class="skill"><h3>Engineering analysis</h3><ul>
+          <li>Bending &amp; torsion <span>L.O.T.U.S.</span></li>
+          <li>von Mises stress <span>L.O.T.U.S.</span></li>
+          <li>Impact loading <span>L.O.T.U.S.</span></li>
+          <li>Euler buckling <span>L.O.T.U.S.</span></li>
+          <li>Hazard analysis <span>NASA reqs</span></li>
+        </ul></div>
+        <div class="skill"><h3>Hardware &amp; tools</h3><ul>
+          <li>Sensor design &amp; build <span>air quality</span></li>
+          <li>Data acquisition <span>10k+ pts</span></li>
+          <li>Git <span>all projects</span></li>
+          <li>Technical writing <span>NASA proposal</span></li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT / LEADERSHIP -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Leadership &amp; record</h2>
+        <p>Leadership, communication and academic recognition.</p>
+      </div>
+      <div class="two">
+        <ol class="tl">
+          <li class="now"><span class="mono when">2026 – present</span><strong>Virginia Tech, Honors College</strong><p>B.S. Computer Engineering. Member of Team ASTRA in the Archimedes society.</p></li>
+          <li><span class="mono when">Oct 2026</span><strong>NASA Micro-g NExT proposal submitted</strong><p>L.O.T.U.S. for the 2027 campaign. I did the structural analysis and proposed the cascading mast.</p></li>
+          <li><span class="mono when">Summers 2024 &amp; 2025</span><strong>ASSIP research intern, GMU CSISS</strong><p>Air-quality sensing and ozone ML. First-author Abstract and Poster at the AGU Fall Meeting, December 2025.</p></li>
+          <li><span class="mono when">2024</span><strong>Inspirit AI Scholars</strong><p>Machine learning research on medical imaging.</p></li>
+          <li><span class="mono when">2022 – 2026</span><strong>Broad Run High School, Summa Cum Laude</strong><p>4.59 weighted GPA · SAT 1500 (790 Math). Debate captain, NCHS secretary, NHS member.</p></li>
+        </ol>
+        <div>
+          <ul class="honors">
+            <li><b>VHSL State Debate, 3rd Place</b> (Lincoln-Douglas) <span>Captain</span></li>
+            <li>Summa Cum Laude <span>Top 5%</span></li>
+            <li>AP Scholar with Distinction <span>College Board</span></li>
+            <li>President's Education Award <span>Academic</span></li>
+            <li>Academic High Honor Roll <span>Academic</span></li>
+            <li>Inspirit AI Scholar Certification <span>ML</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="lead">
+        <div class="card"><div class="mono tag"><b>Communication</b></div><h3>Debate captain, 3rd in Virginia</h3><p>Led the team; placed 3rd in the Virginia state championship in Lincoln-Douglas debate. Builds evidence-based arguments and defends them under questioning.</p></div>
+        <div class="card"><div class="mono tag"><b>Service</b></div><h3>NCHS Secretary · NHS</h3><p>Managed records and coordination for a student honor society.</p></div>
+        <div class="card"><div class="mono tag"><b>Mentorship</b></div><h3>Four years of tutoring</h3><p>Taught Java and Python to peers, from fundamentals through debugging and project structure.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p>I'm applying for Summer 2027 internships and always glad to connect with engineers, recruiters and researchers. Email is the fastest way to reach me.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:rahulbprem@gmail.com">Email me →</a>
+      <a class="btn" href="#top">Back to top ↑</a>
+    </div>
+    <div class="addr">rahulbprem@gmail.com · Blacksburg / Ashburn, VA · U.S. citizen</div>
+    <div class="mono" style="margin-top:36px;color:var(--ink-2)">© 2026 Rahul Premanand · Blacksburg, VA</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // ---------- Mast widget ----------
+  var svg=document.getElementById('mastSvg');
+  var NS='http://www.w3.org/2000/svg';
+  // section side lengths (in) from 7.129 down to 1.700, 6 sections, 20 in each, 2 in overlap
+  var widths=[7.129,6.043,4.957,3.871,2.786,1.700];
+  var SCALE=2.4, BASE=290, CX=80; // px per inch
+  var rects=[];
+  // ground + legs
+  function el(t,a){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);svg.appendChild(e);return e}
+  el('line',{x1:6,y1:BASE+1,x2:154,y2:BASE+1,stroke:'currentColor','stroke-width':1.5});
+  el('line',{x1:CX-9,y1:BASE-30,x2:CX-46,y2:BASE,stroke:'currentColor','stroke-width':2.5,'stroke-linecap':'round',opacity:.7});
+  el('line',{x1:CX+9,y1:BASE-30,x2:CX+46,y2:BASE,stroke:'currentColor','stroke-width':2.5,'stroke-linecap':'round',opacity:.7});
+  for(var i=0;i<6;i++){
+    var w=widths[i]*SCALE*1.5;
+    rects.push(el('rect',{x:CX-w/2,width:w,height:20*SCALE*1.2/1.2*0+20*1.2,fill:i===5?'var(--accent)':'var(--sheet)',stroke:'currentColor','stroke-width':1.3}));
+  }
+  var dim=el('line',{x1:148,x2:148,stroke:'var(--accent)','stroke-width':1,'stroke-dasharray':'3 3'});
+  var lbl=el('text',{x:144,'text-anchor':'end','font-size':9,'font-family':'JetBrains Mono, monospace',fill:'var(--accent)'});
+  svg.style.color='var(--ink)';
+  var PX=290/115; // scale 115 in tall drawing to svg
+  var range=document.getElementById('ext'),hOut=document.getElementById('hOut'),sOut=document.getElementById('sOut');
+  function draw(e){
+    var travel=18*e;
+    for(var i=0;i<6;i++){
+      var bottom=i*travel; // inches from ground
+      var h=20*PX;
+      rects[i].setAttribute('y',BASE-(bottom+20)*PX);
+      rects[i].setAttribute('height',h);
+      var w=widths[i]*PX*2.2;
+      rects[i].setAttribute('x',CX-w/2);rects[i].setAttribute('width',w);
+    }
+    var H=20+5*travel;
+    dim.setAttribute('y1',BASE);dim.setAttribute('y2',BASE-H*PX);
+    lbl.setAttribute('y',BASE-H*PX+10);lbl.textContent=H.toFixed(0)+'"';
+    hOut.textContent=H.toFixed(1);sOut.textContent=travel.toFixed(1);
+  }
+  range.addEventListener('input',function(){draw(range.value/100)});
+  draw(1);
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById('deploy').addEventListener('click',function(){
+    if(reduce){range.value=100;draw(1);return}
+    var t0=null,D=2200;
+    function step(t){if(!t0)t0=t;var p=Math.min(1,(t-t0)/D);var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;range.value=Math.round(e*100);draw(e);if(p<1)requestAnimationFrame(step)}
+    range.value=0;draw(0);requestAnimationFrame(step);
+  });
+
+  // ---------- Load cases ----------
+  var cases=[
+    {name:'Astronaut on crank',fos:2.02,part:'7 in rod (1.5 in PETG)',method:'Combined bending + torsion → von Mises',
+     steps:['F = m·g = 288 kg × 1.62 m/s² = 467 N ≈ <span class="r">105 lb</span>  (99th-percentile suited astronaut)',
+            'M = F·d = 105 × 7 = 735 in·lb      T = F·d = 105 × 6 = 630 in·lb',
+            'I = π(1.5)⁴/64 = 0.2485 in⁴      J = π(1.5)⁴/32 = 0.4970 in⁴      c = 0.75 in',
+            'σ = Mc/I = 2,218 psi      τ = Tρ/J = 951 psi',
+            'σ_vm = √(σ² + 3τ²) = √(2,218² + 3·951²) = 2,763 psi',
+            'FoS = σ_u/σ_vm = 5,584 / 2,763 = <span class="r">2.02</span>'],
+     note:'The worst case puts the heaviest suited astronaut’s full lunar weight on the end of the handle. This is the lowest FoS in nominal operation, so the rod is the first part expected to fail.'},
+    {name:'4 ft lunar drop',fos:2.65,part:'Mast section 1',method:'Impact loading on a cantilever',
+     steps:['W = 9 kg × 1.62 = 14.6 N = 3.28 lb      w = W/L = 3.28/20 = 0.164 lb/in',
+            'δ = wℓ⁴ / (8EΣI) = 0.164·10⁴ / (8 · 273,000 · 32.93) = 2.28×10⁻⁵ in',
+            'n = 1 + √(1 + 2h/δ) = 1 + √(1 + 96 / 2.28×10⁻⁵) = <span class="r">2,053</span>',
+            'M = (W/2)(ℓ/2) = 8.20 in·lb      σ_s = Mc/ΣI = 8.20 × 4.116 / 32.93 = 1.025 psi',
+            'σ_i = n·σ_s = 2,053 × 1.025 = 2,104 psi',
+            'FoS = 5,584 / 2,104 = <span class="r">2.65</span>'],
+     note:'The stowed stand lands on its side across a rock at its midpoint, so each half acts as a cantilever. An end-first landing only compresses the stand and is less severe (FoS 5.43).'},
+    {name:'20 lb side push',fos:2.09,part:'Mast section 6',method:'Cantilever bending, triangular tube',
+     steps:['M = F·d = 20 × 18 = 360 in·lb',
+            'a = 1.7 in      aᵢ = a − 2√3·t = 1.7 − 2√3(0.2) = 1.007 in',
+            'I = (√3/96)(a⁴ − aᵢ⁴) = 0.01804 × (1.7⁴ − 1.007⁴) = 0.1321 in⁴      c = a/√3 = 0.981 in',
+            'σ = Mc/I = 360 × 0.981 / 0.1321 = 2,674 psi',
+            'FoS = 5,584 / 2,674 = <span class="r">2.09</span>'],
+     note:'NASA’s maximum actuation force is applied sideways at the tip of the thinnest section, which sticks 18 in out of the section below it.'},
+    {name:'Axial buckling',fos:2.24,part:'Whole mast (110 in)',method:'Euler column, fixed–free (C = 0.25)',
+     steps:['P = m·g = 9 × 1.62 = 14.6 N  (full allowed mass, conservative)',
+            'P_cr = C·π²·E·I / L²',
+            'P_cr = 0.25 × π² × 273,000 × 0.1321 / 110² = 7.36 lb = <span class="r">32.7 N</span>',
+            'FoS = P_cr / P = 32.7 / 14.6 = <span class="r">2.24</span>'],
+     note:'Conservative by construction: the thinnest section’s moment of inertia is applied along the whole mast, and the full 9 kg allowed mass is used because the stand hasn’t been weighed yet.'}
+  ];
+  var tabs=document.getElementById('tabs'),lc=document.getElementById('lc');
+  var MAX=3;
+  function show(i){
+    Array.prototype.forEach.call(tabs.children,function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1});
+    var c=cases[i];
+    lc.innerHTML=
+      '<div class="crit"><span>Critical part: <b>'+c.part+'</b></span><span>Method: <b>'+c.method+'</b></span><span>PETG σ_u = <b>5,584 psi</b></span></div>'+
+      '<div><div class="fos-bar"><div class="fill" style="width:'+(c.fos/MAX*100)+'%"></div><div class="min" style="left:'+(2/MAX*100)+'%"></div></div>'+
+      '<div class="fos-scale"><span>0</span><span>1.0</span><span style="color:var(--ink)">2.0 NASA min</span><span>3.0</span></div></div>'+
+      '<div class="steps">'+c.steps.join('<br>')+'</div>'+
+      '<p class="note">'+c.note+'</p>';
+  }
+  cases.forEach(function(c,i){
+    var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.id='lc-tab-'+i;
+    b.innerHTML='Case '+(i+1)+' · '+c.name+'<b>FoS '+c.fos.toFixed(2)+'</b>';
+    b.addEventListener('click',function(){show(i)});
+    b.addEventListener('keydown',function(e){if(e.key==='ArrowRight'||e.key==='ArrowLeft'){var n=(i+(e.key==='ArrowRight'?1:3))%4;show(n);tabs.children[n].focus()}});
+    tabs.appendChild(b);
+  });
+  show(0);
+})();
+</script>
+</body>
+</html>
